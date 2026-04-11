@@ -614,6 +614,7 @@ function DastarkhanAccordion() {
     { name:"«Қоңырау»",       desc:"Бұл дастарханда – мектептегі сыңғырлаған қоңырау үнін сағынышпен еске алатын, әр үзіліс пен әр сабақтың қызығын бірге бөліскен сыныптастар отыр." },
     { name:"«Қызбел Барысы»", desc:"Бұл үстелде – қайсарлығы мен табандылығы арқылы өмірде өз орнын тапқан, мектептің намысын қорғап, белсенділігімен ерекшеленген түлектер отыр." },
     { name:"«Ханымдар»",      desc:"Бұл дастархан – мектептің көркі болған, нәзіктігімен, ақылымен, жылулығымен бәріміздің жүрегімізде із қалдырған аруларға арналған." },
+    { name:"«Жан құрбы»",    desc:"Бұл жерде – сырластығы үзілмеген, қуанышта да, мұңда да бір-біріне тірек болған жан құрбылар жиналған. Жылдар өтсе де олардың арасындағы сенім мен жылылық сол қалпында сақталған." },
   ];
   return (
     <div style={{ ...card, marginBottom:20 }}>
@@ -790,7 +791,7 @@ function Page4() {
               {[
                 { role:"Атқарушы",          name:"Айдар",              phone:"—" },
                 { role:"Үйлестіруші",       name:"Болат",              phone:"—" },
-                { role:"Той",               name:"Асылхан, Ғабдолла",  phone:"—" },
+                { role:"Банкет, фуршет",    name:"Асылхан, Ғабдолла",  phone:"—" },
                 { role:"Логистика",         name:"Рамазан, Қанағат",   phone:"—" },
                 { role:"Спорт",             name:"Болатбек, Елтай, Ақылжан", phone:"—" },
                 { role:"Мобилограф",        name:"Мақсұтбек",          phone:"—" },
@@ -929,6 +930,30 @@ export default function App() {
       <div style={{ position:"fixed", bottom:58, left:0, right:0, zIndex:199 }}>
         <OrnBorder/>
       </div>
+
+      {/* 🤖 ЖАБЫСҚАН BOT БАТЫРМАСЫ */}
+      <a
+        href={TG_LINK}
+        target="_blank"
+        rel="noreferrer"
+        title="@baibolcombot — ботпен сөйлесу"
+        style={{
+          position:"fixed", bottom:72, right:16, zIndex:300,
+          width:54, height:54,
+          background:"#229ED9",
+          borderRadius:"50%",
+          display:"flex", alignItems:"center", justifyContent:"center",
+          boxShadow:"0 4px 16px rgba(34,158,217,0.5)",
+          textDecoration:"none",
+          transition:"transform 0.2s",
+        }}
+        onMouseEnter={e => e.currentTarget.style.transform="scale(1.12)"}
+        onMouseLeave={e => e.currentTarget.style.transform="scale(1)"}
+      >
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="white">
+          <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12L8.32 13.617l-2.96-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.828.942z"/>
+        </svg>
+      </a>
     </div>
   );
 }
