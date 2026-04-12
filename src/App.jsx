@@ -496,16 +496,18 @@ function MosqueVideo() {
    3-БЕТ: 35 ЖЫЛДЫҚ БАҒДАРЛАМА
 ══════════════════════════════════════ */
 function Page3() {
-  const dayBox = c => ({ background:`rgba(${c},0.15)`, border:`1px solid rgba(${c},0.45)`, borderRadius:16, padding:"20px 22px", marginBottom:18 });
-  const row = (p,i) => (
-    <div key={i} style={{ display:"flex", gap:12, alignItems:"flex-start", padding:"10px 12px", borderRadius:10, background:"rgba(0,0,0,0.2)", borderLeft:`3px solid ${GOLD}`, marginBottom:8 }}>
-      <span style={{ fontSize:20 }}>{p.icon}</span>
-      <div>
-        <div style={{ color:GOLD, fontSize:12, fontWeight:700 }}>{p.time}</div>
-        <div style={{ color:CREAM, fontSize:14, marginTop:2 }}>{p.text}</div>
+  const dayBox = c => ({ background:`rgba(${c},0.15)`, border:`1px solid rgba(${c},0.45)`, borderRadius:20, padding:"22px 24px", marginBottom:20 });
+
+  const EventCard = ({ icon, time, text, blue }) => (
+    <div className={blue ? "event-card-blue" : "event-card"}>
+      <div style={{ fontSize:28, width:42, textAlign:"center", flexShrink:0 }}>{icon}</div>
+      <div style={{ flex:1 }}>
+        <div style={{ color: blue ? "#a8d4f8" : GOLD2, fontWeight:700, fontSize:14, marginBottom:2 }}>{time}</div>
+        <div style={{ color:"#fff", fontSize:16, fontWeight:500 }}>{text}</div>
       </div>
     </div>
   );
+
   return (
     <div>
       <div style={{ textAlign:"center", marginBottom:24 }}>
@@ -514,39 +516,34 @@ function Page3() {
         <div style={{ color:GOLD, fontSize:14 }}>01.07.2026 жыл</div>
       </div>
 
+      {/* 1-күн */}
       <div style={dayBox("212,160,23")}>
-        <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:14 }}>
-          <div style={{ background:`linear-gradient(135deg,${GOLD},${GOLD2})`, color:RED1, borderRadius:8, padding:"4px 14px", fontWeight:700, fontSize:15 }}>1-күн</div>
-          <div style={{ color:GOLD2, fontWeight:600 }}>01.07.2026ж · «Кездесу»</div>
+        <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:16 }}>
+          <div style={{ background:`linear-gradient(135deg,${GOLD},${GOLD2})`, color:RED1, borderRadius:20, padding:"7px 18px", fontWeight:700, fontSize:15, boxShadow:`0 4px 12px rgba(212,160,23,0.4)` }}>1-күн</div>
+          <div style={{ color:GOLD2, fontWeight:600, fontSize:15 }}>01.07.2026ж · «Кездесу»</div>
         </div>
-        {[
-          { time:"15:00", icon:"🕌", text:"Бас мешіт" },
-          { time:"17:00", icon:"🏕", text:"«Нұра» демалыс орны" },
-          { time:"18:00", icon:"🍽", text:"Банкет" },
-          { time:"22:00", icon:"🌙", text:"Кешкі фотосессия" },
-        ].map(row)}
+        <EventCard icon="🕌" time="15:00"       text="Бас мешіт" />
+        <EventCard icon="🏕" time="17:00"       text="«Нұра» демалыс орны" />
+        <EventCard icon="🍽" time="18:00"       text="Банкет" />
+        <EventCard icon="🌙" time="22:00"       text="Кешкі фотосессия" />
+        <div style={{ marginTop:14, background:"rgba(0,0,0,0.2)", border:`1px solid rgba(212,160,23,0.3)`, borderRadius:12, padding:"12px 18px", color:"rgba(255,230,180,0.85)", fontSize:14 }}>
+          🌟 Бірінші күн — қуанышты кездесу, жылы тілектер!
+        </div>
       </div>
 
+      {/* 2-күн */}
       <div style={dayBox("100,180,255")}>
-        <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:14 }}>
-          <div style={{ background:"linear-gradient(135deg,#2a70b8,#5aaaf0)", color:"#fff", borderRadius:8, padding:"4px 14px", fontWeight:700, fontSize:15 }}>2-күн</div>
-          <div style={{ color:"#a8d4f8", fontWeight:600 }}>02.07.2026ж · «Серуен»</div>
+        <div style={{ display:"flex", alignItems:"center", gap:12, marginBottom:16 }}>
+          <div style={{ background:"linear-gradient(135deg,#2196f3,#5aaaf0)", color:"#fff", borderRadius:20, padding:"7px 18px", fontWeight:700, fontSize:15, boxShadow:"0 4px 12px rgba(33,150,243,0.4)" }}>2-күн</div>
+          <div style={{ color:"#a8d4f8", fontWeight:600, fontSize:15 }}>02.07.2026ж · «Серуен»</div>
         </div>
-        {[
-          { time:"10:00", icon:"🏛", text:"«Экспо» көрме орталығы" },
-          { time:"11:00", icon:"🌿", text:"Ботаникалық саябақ" },
-          { time:"12:00", icon:"🗼", text:"«Бәйтерек» монументі" },
-          { time:"14:00", icon:"🏕", text:"«Нұра» демалыс орны" },
-        ].map(row)}
-        <div style={{ background:"rgba(0,0,0,0.2)", borderRadius:10, padding:"10px 14px", marginTop:4, borderLeft:`3px solid rgba(100,180,255,0.5)` }}>
-          {[
-            "🥂 Фуршет — бірлескен тағам, ән-жыр",
-            "🎮 Ойын-сауық, жарыстар",
-            "🌲 Тимбилдинг — табиғат қойнауында серуендеу",
-            "🤝 Қоштасу — келесі кездесуге дейін!",
-          ].map((t,i)=>(
-            <div key={i} style={{ color:"rgba(200,230,255,0.85)", fontSize:13, padding:"4px 0" }}>{t}</div>
-          ))}
+        <EventCard blue icon="🌲" time="06:00 – 09:00" text="Тимбилдинг — табиғат қойнауында серуендеу" />
+        <EventCard blue icon="🍳" time="09:00 – 10:00" text="Таңғы ас" />
+        <EventCard blue icon="🎯" time="10:00 – 13:00" text="Ойын-сауық, жарыстар" />
+        <EventCard blue icon="🍽️" time="13:00 – 15:00" text="Фуршет — бірлескен тағам, ән-жыр" />
+        <EventCard blue icon="🏛️" time="16:00 – 19:00" text="Астанаға туристік саяхат" />
+        <div style={{ marginTop:14, background:"rgba(0,0,0,0.2)", border:"1px solid rgba(100,180,255,0.3)", borderRadius:12, padding:"12px 18px", color:"rgba(200,230,255,0.85)", fontSize:14 }}>
+          👋 Қоштасу — келесі кездесуге дейін!
         </div>
       </div>
 
@@ -729,19 +726,13 @@ function Page4() {
         </div>
       </div>
 
-      {/* 2GIS карта */}
-      <div style={{ ...card, marginBottom:16 }}>
-        <h3 style={{ color:GOLD, fontSize:17, margin:"0 0 12px" }}>2GIS картасы</h3>
-        <div style={{ borderRadius:12, overflow:"hidden", border:`2px solid rgba(212,160,23,0.35)` }}>
-          <iframe title="map" src="https://2gis.kz/astana/firm/70000001033850780"
-            style={{ width:"100%", height:260, border:"none", display:"block" }}/>
-        </div>
-        <div style={{ textAlign:"center", marginTop:12 }}>
-          <a href="https://2gis.kz/astana/firm/70000001033850780" target="_blank" rel="noreferrer"
-            style={{ display:"inline-block", background:`linear-gradient(135deg,${GOLD},${GOLD2})`, color:RED1, textDecoration:"none", borderRadius:8, padding:"11px 24px", fontWeight:700, fontSize:14 }}>
-            🗺 Маршрутты ашу
-          </a>
-        </div>
+      {/* Карта */}
+      <div style={{ ...card, marginBottom:16, textAlign:"center" }}>
+        <h3 style={{ color:GOLD, fontSize:17, margin:"0 0 16px" }}>Мекенжай</h3>
+        <a href="https://maps.app.goo.gl/pRZRtJ5Z4C6S8EBh6" target="_blank" rel="noreferrer"
+          style={{ display:"inline-block", background:`linear-gradient(135deg,${GOLD},${GOLD2})`, color:RED1, textDecoration:"none", borderRadius:8, padding:"13px 28px", fontWeight:700, fontSize:15 }}>
+          🗺 Маршрутты ашу
+        </a>
       </div>
 
       <Divider/>
@@ -761,6 +752,16 @@ function Page4() {
           <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
             <input value={name} onChange={e=>setName(e.target.value)} placeholder="Аты-жөніңіз" style={inputSt}/>
             <textarea value={msg} onChange={e=>setMsg(e.target.value)} placeholder="Қай дастарханды қалайсың?" rows={3} style={{ ...inputSt, resize:"vertical" }}/>
+            <button onClick={submit} style={{
+              background: name.trim() ? `linear-gradient(135deg,${GOLD},${GOLD2})` : "rgba(212,160,23,0.2)",
+              color: name.trim() ? RED1 : "rgba(212,160,23,0.4)",
+              border:"none", borderRadius:10, padding:"13px 20px",
+              fontWeight:700, fontSize:15, cursor: name.trim() ? "pointer" : "default",
+              fontFamily:"inherit", transition:"all 0.2s",
+              boxShadow: name.trim() ? `0 4px 16px rgba(212,160,23,0.35)` : "none",
+            }}>
+              ✓ Қатысамын
+            </button>
           </div>
         )}
         {list.length > 0 && (
@@ -852,7 +853,10 @@ const PAGES = [
 
 export default function App() {
   const [page, setPage] = useState(1);
+  const [animKey, setAnimKey] = useState(0);
   const timer = useCountdown();
+
+  const goPage = (p) => { setPage(p); setAnimKey(k=>k+1); window.scrollTo({top:0,behavior:"smooth"}); };
 
   const content = {
     1: <Page1 timer={timer}/>,
@@ -876,7 +880,7 @@ export default function App() {
       <div style={{ background:"rgba(50,0,0,0.92)", backdropFilter:"blur(10px)", borderBottom:`1px solid rgba(212,160,23,0.3)`, position:"sticky", top:0, zIndex:100 }}>
         <div style={{ maxWidth:800, margin:"0 auto", padding:"0 12px", display:"flex", alignItems:"center", gap:6, height:52, overflowX:"auto", scrollbarWidth:"none" }}>
           {PAGES.map(p=>(
-            <button key={p.id} onClick={()=>setPage(p.id)} style={{
+            <button key={p.id} onClick={()=>goPage(p.id)} style={{
               background: page===p.id ? `linear-gradient(135deg,${GOLD},${GOLD2})` : "transparent",
               color: page===p.id ? RED1 : "rgba(255,220,160,0.7)",
               border:`1px solid ${page===p.id ? "transparent" : "rgba(212,160,23,0.25)"}`,
@@ -890,7 +894,7 @@ export default function App() {
         {/* Бет нүктелері */}
         <div style={{ display:"flex", justifyContent:"center", gap:8, paddingBottom:6 }}>
           {PAGES.map(p=>(
-            <div key={p.id} onClick={()=>setPage(p.id)} style={{
+            <div key={p.id} onClick={()=>goPage(p.id)} style={{
               width: page===p.id ? 24 : 8,
               height:8, borderRadius:4,
               background: page===p.id ? GOLD : "rgba(212,160,23,0.3)",
@@ -901,7 +905,7 @@ export default function App() {
       </div>
 
       {/* МАЗМҰН */}
-      <div style={{ maxWidth:780, margin:"0 auto", padding:"28px 16px 100px" }}>
+      <div key={animKey} className="page-enter" style={{ maxWidth:780, margin:"0 auto", padding:"28px 16px 100px" }}>
         {content[page]}
       </div>
 
@@ -915,6 +919,12 @@ export default function App() {
       }}>
         <a href={`tel:${ADMIN_PHONE}`} style={{ display:"flex", alignItems:"center", gap:6, background:"rgba(212,160,23,0.15)", border:`1px solid rgba(212,160,23,0.35)`, color:GOLD, textDecoration:"none", borderRadius:9, padding:"9px 13px", fontWeight:700, fontSize:12 }}>
           📞 {ADMIN_PHONE}
+        </a>
+        <a href={TG_LINK} target="_blank" rel="noreferrer" style={{ display:"flex", alignItems:"center", gap:6, background:"rgba(34,158,217,0.2)", border:"1px solid rgba(34,158,217,0.45)", color:"#5bc8f5", textDecoration:"none", borderRadius:9, padding:"9px 13px", fontWeight:700, fontSize:12 }}>
+          ✈️ Telegram
+        </a>
+        <a href={WA_LINK} target="_blank" rel="noreferrer" style={{ display:"flex", alignItems:"center", gap:6, background:"rgba(37,211,102,0.15)", border:"1px solid rgba(37,211,102,0.4)", color:"#4ade80", textDecoration:"none", borderRadius:9, padding:"9px 13px", fontWeight:700, fontSize:12 }}>
+          💬 WhatsApp
         </a>
       </div>
 
