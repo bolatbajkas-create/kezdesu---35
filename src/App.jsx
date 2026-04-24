@@ -702,18 +702,6 @@ function Page4() {
         </div>
       </div>
 
-      {/* Фотогалерея */}
-      <div style={{ ...card, marginBottom:16 }}>
-        <h3 style={{ color:GOLD, fontSize:17, margin:"0 0 12px" }}>Фотогалерея</h3>
-        <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:6 }}>
-          {PHOTOS_NURA.map((src,i)=>(
-            <img key={i} src={src} alt="" onClick={()=>setLbSrc(src)}
-              style={{ width:"100%", height:110, objectFit:"cover", borderRadius:8, cursor:"zoom-in", display:"block" }}
-              onError={e=>{e.target.style.display="none"}}/>
-          ))}
-        </div>
-      </div>
-
       {/* Карта */}
       <div style={{ ...card, marginBottom:16, textAlign:"center" }}>
         <h3 style={{ color:GOLD, fontSize:17, margin:"0 0 16px" }}>Мекенжай</h3>
@@ -722,6 +710,10 @@ function Page4() {
           🗺 Маршрутты ашу
         </a>
       </div>
+
+      <DastarkhanAccordion />
+
+      <Divider/>
 
       {/* Кері байланыс — RSVP */}
       <div style={{ ...card, marginBottom:20 }}>
@@ -749,10 +741,6 @@ function Page4() {
           </div>
         )}
       </div>
-
-      <Divider/>
-
-      <DastarkhanAccordion />
 
       {/* Ұйымдастырушылар алқасы */}
       <div style={{ ...card, marginBottom:20 }}>
