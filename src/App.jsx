@@ -644,6 +644,16 @@ const PHOTOS_NURA = [
 ══════════════════════════════════════ */
 function Page4() {
   const [lbSrc, setLbSrc] = useState(null);
+  const [name, setName] = useState("");
+  const [msg,  setMsg]  = useState("");
+  const [list, setList] = useState([]);
+  const [done, setDone] = useState(false);
+
+  const submit = () => {
+    if (!name.trim()) return;
+    setList(l=>[...l,{name,msg}]); setName(""); setMsg(""); setDone(true);
+    setTimeout(()=>setDone(false),3000);
+  };
 
   return (
     <div>
@@ -711,6 +721,43 @@ function Page4() {
           style={{ display:"inline-block", background:`linear-gradient(135deg,${GOLD},${GOLD2})`, color:RED1, textDecoration:"none", borderRadius:8, padding:"13px 28px", fontWeight:700, fontSize:15 }}>
           🗺 Маршрутты ашу
         </a>
+      </div>
+
+      {/* Кері байланыс — RSVP */}
+      <div style={{ ...card, marginBottom:20 }}>
+        <SectionTitle>Таңдаймын</SectionTitle>
+        {done ? (
+          <div style={{ textAlign:"center", padding:"24px 0" }}>
+            <div style={{ fontSize:48 }}>🎉</div>
+            <p style={{ color:GOLD, fontSize:18, fontFamily:"Georgia,serif", margin:"10px 0 4px" }}>Рахмет!</p>
+            <p style={{ color:"rgba(255,220,160,0.8)", fontSize:14 }}>Жауабыңыз қабылданды. Кездесуде көріскенше!</p>
+          </div>
+        ) : (
+          <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
+            <input value={name} onChange={e=>setName(e.target.value)} placeholder="Есіміңді жаз" style={inputSt}/>
+            <textarea value={msg} onChange={e=>setMsg(e.target.value)} placeholder="Қандай дастарханды қалайсың?" rows={3} style={{ ...inputSt, resize:"vertical" }}/>
+            <button onClick={submit} style={{
+              background: name.trim() ? `linear-gradient(135deg,${GOLD},${GOLD2})` : "rgba(212,160,23,0.2)",
+              color: name.trim() ? RED1 : "rgba(212,160,23,0.4)",
+              border:"none", borderRadius:10, padding:"13px 20px",
+              fontWeight:700, fontSize:15, cursor: name.trim() ? "pointer" : "default",
+              fontFamily:"inherit", transition:"all 0.2s",
+              boxShadow: name.trim() ? `0 4px 16px rgba(212,160,23,0.35)` : "none",
+            }}>
+              ✓ Қатысамын
+            </button>
+          </div>
+        )}
+        {list.length > 0 && (
+          <div style={{ marginTop:14 }}>
+            <div style={{ color:GOLD, fontSize:13, marginBottom:8 }}>Тізімге енгендер ({list.length}):</div>
+            {list.map((g,i)=>(
+              <div key={i} style={{ padding:"7px 12px", background:"rgba(0,0,0,0.2)", borderRadius:7, marginBottom:6, fontSize:13, color:CREAM }}>
+                ✓ {g.name}{g.msg ? ` — "${g.msg}"` : ""}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
 
       <Divider/>
