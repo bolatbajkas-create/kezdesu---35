@@ -704,45 +704,6 @@ function Page4() {
         </div>
       </div>
 
-      {/* Баға */}
-      <div style={{ ...card, marginBottom:16 }}>
-        <h3 style={{ color:GOLD, fontSize:18, margin:"0 0 14px" }}>💰 Бағалар</h3>
-        <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-          {[
-            { icon:"🎟", label:"Демалыс базасына кіру", price:"3 000 ₸" },
-            { icon:"🏨", label:"Қонақ үйде бөлме (1 түн)", price:"15 000 ₸" },
-            { icon:"🍽", label:"Банкет залы", price:"100 адам" },
-          ].map((item,i)=>(
-            <div key={i} style={{ display:"flex", justifyContent:"space-between", alignItems:"center", background:"rgba(0,0,0,0.25)", border:`1px solid rgba(212,160,23,0.2)`, borderRadius:10, padding:"12px 16px" }}>
-              <span style={{ color:CREAM, fontSize:14 }}>{item.icon} {item.label}</span>
-              <span style={{ color:GOLD, fontWeight:700, fontSize:15 }}>{item.price}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Мәзір */}
-      <div style={{ ...card, marginBottom:16 }}>
-        <h3 style={{ color:GOLD, fontSize:18, margin:"0 0 14px" }}>🍴 Дастархан мәзірі</h3>
-        {[
-          { cat:"🥗 Салқын тағамдар", items:["Нан, май, бал", "Көкөніс салаты", "Шұжық-ірімшік тақтайшасы", "Тұздықтар, маринадтар"] },
-          { cat:"🔥 Ыстық тағамдар", items:["Самса (2 дана)", "Бешпармақ", "Қуырдақ", "Шашлык / Барбекю"] },
-          { cat:"🎂 Десерт", items:["Мерейтой торты", "Жемістер тақтайшасы", "Татті тістеулер"] },
-          { cat:"🫖 Сусындар", items:["Шай, кофе", "Жеміс шырындары", "Минерал су"] },
-        ].map((section,i)=>(
-          <div key={i} style={{ marginBottom:14 }}>
-            <div style={{ color:GOLD, fontWeight:700, fontSize:14, marginBottom:8 }}>{section.cat}</div>
-            <div style={{ display:"flex", flexDirection:"column", gap:5 }}>
-              {section.items.map((item,j)=>(
-                <div key={j} style={{ display:"flex", alignItems:"center", gap:8, color:"rgba(255,230,180,0.85)", fontSize:13 }}>
-                  <span style={{ color:GOLD, opacity:0.5 }}>•</span> {item}
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
       {/* Карта */}
       <div style={{ ...card, marginBottom:16, textAlign:"center" }}>
         <h3 style={{ color:GOLD, fontSize:17, margin:"0 0 16px" }}>Мекенжай</h3>
