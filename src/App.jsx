@@ -549,10 +549,9 @@ function Page3() {
 
       {/* Шақыру билеті */}
       <div style={{ ...card, marginBottom:20 }}>
-        <SectionTitle>Билетті қарау</SectionTitle>
-        <div style={{ maxWidth:460, margin:"0 auto 16px", backgroundImage:`url(${B}meshit.jpg)`, backgroundSize:"cover", backgroundPosition:"top center", border:`2px solid ${GOLD}`, borderRadius:18, overflow:"hidden", boxShadow:`0 0 30px rgba(212,160,23,0.3)` }}>
+        <div style={{ maxWidth:460, margin:"0 auto 0", backgroundImage:`url(${B}meshit.jpg)`, backgroundSize:"cover", backgroundPosition:"top center", border:`2px solid ${GOLD}`, borderRadius:18, overflow:"hidden", boxShadow:`0 0 30px rgba(212,160,23,0.3)` }}>
           <div style={{ height:6, background:`linear-gradient(90deg,${GOLD},${GOLD2},${GOLD})` }}/>
-          <div style={{ padding:"24px 28px", display:"flex", flexDirection:"column", minHeight:260 }}>
+          <div style={{ padding:"24px 28px", display:"flex", flexDirection:"column", minHeight:400 }}>
             <a href={`${B}baibolat-35.mp4`} target="_blank" rel="noreferrer" style={{
               display:"flex", alignItems:"center", justifyContent:"center", gap:8,
               width:"100%", background:`linear-gradient(135deg,${GOLD},${GOLD2})`,
@@ -562,11 +561,11 @@ function Page3() {
             }}>
               ▶ Билетті қарау
             </a>
-            <div style={{ flex:1 }}/>
-            <Divider/>
-            <MosqueVideo/>
           </div>
           <div style={{ height:6, background:`linear-gradient(90deg,${GOLD},${GOLD2},${GOLD})` }}/>
+        </div>
+        <div style={{ maxWidth:460, margin:"10px auto 0", background:`linear-gradient(135deg,rgba(212,160,23,0.22),rgba(212,160,23,0.10))`, border:`1px solid rgba(212,160,23,0.4)`, borderRadius:14, padding:"4px" }}>
+          <MosqueVideo/>
         </div>
       </div>
 
