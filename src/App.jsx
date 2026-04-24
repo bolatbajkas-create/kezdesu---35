@@ -644,16 +644,6 @@ const PHOTOS_NURA = [
 ══════════════════════════════════════ */
 function Page4() {
   const [lbSrc, setLbSrc] = useState(null);
-  const [name, setName] = useState("");
-  const [msg,  setMsg]  = useState("");
-  const [list, setList] = useState([]);
-  const [done, setDone] = useState(false);
-
-  const submit = () => {
-    if (!name.trim()) return;
-    setList(l=>[...l,{name,msg}]); setName(""); setMsg(""); setDone(true);
-    setTimeout(()=>setDone(false),3000);
-  };
 
   return (
     <div>
@@ -664,7 +654,7 @@ function Page4() {
       )}
 
       {/* Нұра */}
-      <SectionTitle>«Нұра» демалыс орны 🏕</SectionTitle>
+      <SectionTitle>Нұра демалыс базасы</SectionTitle>
 
       {/* Басты сурет */}
       <div style={{ borderRadius:16, overflow:"hidden", marginBottom:16, border:`2px solid rgba(212,160,23,0.4)` }}>
@@ -838,7 +828,7 @@ const PAGES = [
   { id:1, label:"Басты бет",    icon:"🏠" },
   { id:2, label:"Естеліктер",   icon:"📅" },
   { id:3, label:"Бағдарлама",   icon:"📋" },
-  { id:4, label:"«Нұра» & Байланыс", icon:"🏕" },
+  { id:4, label:"Нұра демалыс базасы", icon:"🏕" },
 ];
 
 export default function App() {
