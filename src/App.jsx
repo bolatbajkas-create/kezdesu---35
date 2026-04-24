@@ -562,6 +562,9 @@ function Page3() {
             }}>
               ▶ Билетті қарау
             </a>
+            <Divider/>
+            <MosqueVideo/>
+            <Divider/>
           </div>
           <div style={{ height:6, background:`linear-gradient(90deg,${GOLD},${GOLD2},${GOLD})` }}/>
         </div>
