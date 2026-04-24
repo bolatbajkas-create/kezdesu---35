@@ -575,7 +575,15 @@ function Page3() {
             <Divider/>
             <MosqueVideo/>
             <div style={{ marginTop:12 }}/>
-            <SongPlayer/>
+            <a href={`${B}baibolat-35.mp4`} target="_blank" rel="noreferrer" style={{
+              display:"flex", alignItems:"center", justifyContent:"center", gap:8,
+              width:"100%", background:`linear-gradient(135deg,${GOLD},${GOLD2})`,
+              color:RED1, borderRadius:10, padding:"13px 16px",
+              fontWeight:700, fontSize:15, textDecoration:"none",
+              boxSizing:"border-box", boxShadow:`0 4px 16px rgba(212,160,23,0.4)`,
+            }}>
+              ▶ Бейнені қарау
+            </a>
           </div>
           <div style={{ height:6, background:`linear-gradient(90deg,${GOLD},${GOLD2},${GOLD})` }}/>
         </div>
@@ -726,6 +734,45 @@ function Page4() {
         </div>
       </div>
 
+      {/* Баға */}
+      <div style={{ ...card, marginBottom:16 }}>
+        <h3 style={{ color:GOLD, fontSize:18, margin:"0 0 14px" }}>💰 Бағалар</h3>
+        <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
+          {[
+            { icon:"🎟", label:"Демалыс базасына кіру", price:"3 000 ₸" },
+            { icon:"🏨", label:"Қонақ үйде бөлме (1 түн)", price:"15 000 ₸" },
+            { icon:"🍽", label:"Банкет залы", price:"100 адам" },
+          ].map((item,i)=>(
+            <div key={i} style={{ display:"flex", justifyContent:"space-between", alignItems:"center", background:"rgba(0,0,0,0.25)", border:`1px solid rgba(212,160,23,0.2)`, borderRadius:10, padding:"12px 16px" }}>
+              <span style={{ color:CREAM, fontSize:14 }}>{item.icon} {item.label}</span>
+              <span style={{ color:GOLD, fontWeight:700, fontSize:15 }}>{item.price}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Мәзір */}
+      <div style={{ ...card, marginBottom:16 }}>
+        <h3 style={{ color:GOLD, fontSize:18, margin:"0 0 14px" }}>🍴 Дастархан мәзірі</h3>
+        {[
+          { cat:"🥗 Салқын тағамдар", items:["Нан, май, бал", "Көкөніс салаты", "Шұжық-ірімшік тақтайшасы", "Тұздықтар, маринадтар"] },
+          { cat:"🔥 Ыстық тағамдар", items:["Самса (2 дана)", "Бешпармақ", "Қуырдақ", "Шашлык / Барбекю"] },
+          { cat:"🎂 Десерт", items:["Мерейтой торты", "Жемістер тақтайшасы", "Татті тістеулер"] },
+          { cat:"🫖 Сусындар", items:["Шай, кофе", "Жеміс шырындары", "Минерал су"] },
+        ].map((section,i)=>(
+          <div key={i} style={{ marginBottom:14 }}>
+            <div style={{ color:GOLD, fontWeight:700, fontSize:14, marginBottom:8 }}>{section.cat}</div>
+            <div style={{ display:"flex", flexDirection:"column", gap:5 }}>
+              {section.items.map((item,j)=>(
+                <div key={j} style={{ display:"flex", alignItems:"center", gap:8, color:"rgba(255,230,180,0.85)", fontSize:13 }}>
+                  <span style={{ color:GOLD, opacity:0.5 }}>•</span> {item}
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
       {/* Карта */}
       <div style={{ ...card, marginBottom:16, textAlign:"center" }}>
         <h3 style={{ color:GOLD, fontSize:17, margin:"0 0 16px" }}>Мекенжай</h3>
@@ -738,43 +785,6 @@ function Page4() {
       <Divider/>
 
       <DastarkhanAccordion />
-
-      {/* Кері байланыс — RSVP */}
-      <div style={{ ...card, marginBottom:20 }}>
-        <SectionTitle>Таңдаймын</SectionTitle>
-        {done ? (
-          <div style={{ textAlign:"center", padding:"24px 0" }}>
-            <div style={{ fontSize:48 }}>🎉</div>
-            <p style={{ color:GOLD, fontSize:18, fontFamily:"Georgia,serif", margin:"10px 0 4px" }}>Рахмет!</p>
-            <p style={{ color:"rgba(255,220,160,0.8)", fontSize:14 }}>Жауабыңыз қабылданды. Кездесуде көріскенше!</p>
-          </div>
-        ) : (
-          <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
-            <input value={name} onChange={e=>setName(e.target.value)} placeholder="Аты-жөніңіз" style={inputSt}/>
-            <textarea value={msg} onChange={e=>setMsg(e.target.value)} placeholder="Қай дастарханды қалайсың?" rows={3} style={{ ...inputSt, resize:"vertical" }}/>
-            <button onClick={submit} style={{
-              background: name.trim() ? `linear-gradient(135deg,${GOLD},${GOLD2})` : "rgba(212,160,23,0.2)",
-              color: name.trim() ? RED1 : "rgba(212,160,23,0.4)",
-              border:"none", borderRadius:10, padding:"13px 20px",
-              fontWeight:700, fontSize:15, cursor: name.trim() ? "pointer" : "default",
-              fontFamily:"inherit", transition:"all 0.2s",
-              boxShadow: name.trim() ? `0 4px 16px rgba(212,160,23,0.35)` : "none",
-            }}>
-              ✓ Қатысамын
-            </button>
-          </div>
-        )}
-        {list.length > 0 && (
-          <div style={{ marginTop:14 }}>
-            <div style={{ color:GOLD, fontSize:13, marginBottom:8 }}>Тізімге енгендер ({list.length}):</div>
-            {list.map((g,i)=>(
-              <div key={i} style={{ padding:"7px 12px", background:"rgba(0,0,0,0.2)", borderRadius:7, marginBottom:6, fontSize:13, color:CREAM }}>
-                ✓ {g.name}{g.msg ? ` — "${g.msg}"` : ""}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
 
       {/* Ұйымдастырушылар алқасы */}
       <div style={{ ...card, marginBottom:20 }}>
@@ -928,13 +938,6 @@ export default function App() {
         </a>
       </div>
 
-      {/* ФУТЕР */}
-      <div style={{ textAlign:"center", padding:"16px 16px 80px", color:"rgba(255,220,160,0.3)", fontSize:11 }}>
-        <div style={{ color:GOLD, fontSize:13, marginBottom:4 }}>✦</div>
-        АОМ · 1991 жылғы түлектер · 35 жылдық мерей той · 2026<br/>
-        <span style={{ color:"rgba(212,160,23,0.35)" }}>Сайт әкімшісі: Мадияр Болат · {ADMIN_PHONE}</span><br/>
-        <a href="mailto:dulatov.kizbel@mail.ru" style={{ color:"rgba(212,160,23,0.5)", textDecoration:"none" }}>✉ dulatov.kizbel@mail.ru</a>
-      </div>
 
       {/* ТӨМЕНГІ ОЮ ЖОЛАҒЫ */}
       <div style={{ position:"fixed", bottom:58, left:0, right:0, zIndex:199 }}>
