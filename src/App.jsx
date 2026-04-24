@@ -736,16 +736,6 @@ function Page4() {
           <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
             <input value={name} onChange={e=>setName(e.target.value)} placeholder="Есіміңді жаз" style={inputSt}/>
             <textarea value={msg} onChange={e=>setMsg(e.target.value)} placeholder="Қандай дастарханды қалайсың?" rows={3} style={{ ...inputSt, resize:"vertical" }}/>
-            <button onClick={submit} style={{
-              background: name.trim() ? `linear-gradient(135deg,${GOLD},${GOLD2})` : "rgba(212,160,23,0.2)",
-              color: name.trim() ? RED1 : "rgba(212,160,23,0.4)",
-              border:"none", borderRadius:10, padding:"13px 20px",
-              fontWeight:700, fontSize:15, cursor: name.trim() ? "pointer" : "default",
-              fontFamily:"inherit", transition:"all 0.2s",
-              boxShadow: name.trim() ? `0 4px 16px rgba(212,160,23,0.35)` : "none",
-            }}>
-              ✓ Қатысамын
-            </button>
           </div>
         )}
         {list.length > 0 && (
