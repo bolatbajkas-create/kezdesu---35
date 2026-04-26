@@ -640,44 +640,61 @@ function DastarkhanAccordion() {
 
 /* ── Жазылғандар тізімі ── */
 function GuestList({ guests }) {
+  const [open, setOpen] = useState(false);
   const hasAny = TABLES.some(t => (guests[t.name] || []).length > 0);
+  const total = TABLES.reduce((sum, t) => sum + (guests[t.name] || []).length, 0);
   if (!hasAny) return null;
   return (
     <div style={{ ...card, marginBottom:20 }}>
-      <SectionTitle>Жазылғандар тізімі 📋</SectionTitle>
-      {TABLES.map((t, i) => {
-        const people = guests[t.name] || [];
-        if (people.length === 0) return null;
-        const isFull = people.length >= MAX_SEATS;
-        return (
-          <div key={i} style={{ marginBottom:14, paddingBottom:14,
-            borderBottom: i < TABLES.length-1 ? `1px solid rgba(212,160,23,0.15)` : "none" }}>
-            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:8 }}>
-              <div style={{ color:GOLD2, fontFamily:"Georgia,serif", fontWeight:700, fontSize:14 }}>
-                {t.name}
-              </div>
-              <div style={{
-                fontSize:11, fontWeight:700, padding:"2px 9px", borderRadius:10,
-                background: isFull ? "rgba(200,50,50,0.3)" : "rgba(212,160,23,0.15)",
-                color: isFull ? "#ff9999" : GOLD,
-                border:`1px solid ${isFull ? "rgba(200,50,50,0.5)" : "rgba(212,160,23,0.35)"}`,
-              }}>
-                {people.length}/{MAX_SEATS}
-              </div>
-            </div>
-            <div style={{ display:"flex", flexWrap:"wrap", gap:5 }}>
-              {people.map((p, j) => (
-                <span key={j} style={{ background:"rgba(212,160,23,0.12)", border:`1px solid rgba(212,160,23,0.3)`, borderRadius:14, padding:"3px 11px", fontSize:12, color:CREAM }}>
-                  {j+1}. {p}
-                </span>
-              ))}
-            </div>
-            {isFull && (
-              <div style={{ marginTop:6, fontSize:12, color:"#ff9999", fontStyle:"italic" }}>⛔ Орын толды</div>
-            )}
+      <div onClick={()=>setOpen(o=>!o)} style={{ cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", userSelect:"none" }}>
+        <span style={{ color:GOLD, fontSize:18, visibility:"hidden" }}>{open?"▲":"▼"}</span>
+        <div style={{ textAlign:"center", flex:1 }}>
+          <div style={{ color:GOLD, fontSize:11, letterSpacing:4 }}>✦ ✦ ✦</div>
+          <div style={{ fontSize:18, fontFamily:"Georgia,serif", color:CREAM, margin:"4px 0 2px", fontWeight:700 }}>
+            Жазылғандар тізімі 📋
+            <span style={{ marginLeft:8, background:"rgba(212,160,23,0.2)", border:`1px solid rgba(212,160,23,0.4)`, borderRadius:12, padding:"1px 9px", fontSize:13, color:GOLD, verticalAlign:"middle" }}>{total}</span>
           </div>
-        );
-      })}
+          <div style={{ width:60, height:2, background:`linear-gradient(90deg,transparent,${GOLD},transparent)`, margin:"4px auto 0" }}/>
+        </div>
+        <span style={{ color:GOLD, fontSize:18 }}>{open?"▲":"▼"}</span>
+      </div>
+      {open && (
+        <div style={{ marginTop:16 }}>
+          {TABLES.map((t, i) => {
+            const people = guests[t.name] || [];
+            if (people.length === 0) return null;
+            const isFull = people.length >= MAX_SEATS;
+            return (
+              <div key={i} style={{ marginBottom:14, paddingBottom:14,
+                borderBottom: i < TABLES.length-1 ? `1px solid rgba(212,160,23,0.15)` : "none" }}>
+                <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:8 }}>
+                  <div style={{ color:GOLD2, fontFamily:"Georgia,serif", fontWeight:700, fontSize:14 }}>
+                    {t.name}
+                  </div>
+                  <div style={{
+                    fontSize:11, fontWeight:700, padding:"2px 9px", borderRadius:10,
+                    background: isFull ? "rgba(200,50,50,0.3)" : "rgba(212,160,23,0.15)",
+                    color: isFull ? "#ff9999" : GOLD,
+                    border:`1px solid ${isFull ? "rgba(200,50,50,0.5)" : "rgba(212,160,23,0.35)"}`,
+                  }}>
+                    {people.length}/{MAX_SEATS}
+                  </div>
+                </div>
+                <div style={{ display:"flex", flexWrap:"wrap", gap:5 }}>
+                  {people.map((p, j) => (
+                    <span key={j} style={{ background:"rgba(212,160,23,0.12)", border:`1px solid rgba(212,160,23,0.3)`, borderRadius:14, padding:"3px 11px", fontSize:12, color:CREAM }}>
+                      {j+1}. {p}
+                    </span>
+                  ))}
+                </div>
+                {isFull && (
+                  <div style={{ marginTop:6, fontSize:12, color:"#ff9999", fontStyle:"italic" }}>⛔ Орын толды</div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
