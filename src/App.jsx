@@ -552,7 +552,7 @@ function Page3() {
         <div style={{ maxWidth:460, margin:"0 auto 0", backgroundImage:`url(${B}meshit.jpg)`, backgroundSize:"cover", backgroundPosition:"top center", border:`2px solid ${GOLD}`, borderRadius:18, overflow:"hidden", boxShadow:`0 0 30px rgba(212,160,23,0.3)` }}>
           <div style={{ height:6, background:`linear-gradient(90deg,${GOLD},${GOLD2},${GOLD})` }}/>
           <div style={{ padding:"24px 28px", display:"flex", flexDirection:"column", minHeight:400 }}>
-            <a href={`${B}baibolat-35.mp4`} target="_blank" rel="noreferrer" style={{
+            <a href={`${B}baibolat_music.mp4`} target="_blank" rel="noreferrer" style={{
               display:"flex", alignItems:"center", justifyContent:"center", gap:8,
               width:"100%", background:`linear-gradient(135deg,${GOLD},${GOLD2})`,
               color:RED1, borderRadius:10, padding:"13px 16px",
@@ -590,25 +590,17 @@ function Page3() {
   );
 }
 
-/* ── Дастархандар деректері ── */
-const MAX_PER_TABLE = 10;
-const TABLES = [
-  { name:"«Алтын ұя»",      desc:"Бұл дастарханда – мектепті жүрегінде сақтаған, алғашқы ұстазын, алғашқы достарын ешқашан ұмытпаған түлектер отыр. Бұл – бәріміздің бастау алған қасиетті ордамыздың белгісі." },
-  { name:"«Адал дос»",      desc:"Бұл жерде – жылдар өтсе де арасы үзілмеген, қуанышта да, қиындықта да бірге болған шынайы достар жиналған. Достықтары – уақытқа бағынбайтын ең қымбат байлық." },
-  { name:"«Қоңырау»",       desc:"Бұл дастарханда – мектептегі сыңғырлаған қоңырау үнін сағынышпен еске алатын, әр үзіліс пен әр сабақтың қызығын бірге бөліскен сыныптастар отыр." },
-  { name:"«Қызбел Барысы»", desc:"Бұл үстелде – қайсарлығы мен табандылығы арқылы өмірде өз орнын тапқан, мектептің намысын қорғап, белсенділігімен ерекшеленген түлектер отыр." },
-  { name:"«Ханымдар»",      desc:"Бұл дастархан – мектептің көркі болған, нәзіктігімен, ақылымен, жылулығымен бәріміздің жүрегімізде із қалдырған аруларға арналған." },
-  { name:"«Жан құрбы»",    desc:"Бұл жерде – сырластығы үзілмеген, қуанышта да, мұңда да бір-біріне тірек болған жан құрбылар жиналған. Жылдар өтсе де олардың арасындағы сенім мен жылылық сол қалпында сақталған." },
-];
-
-function loadRegs() {
-  try { return JSON.parse(localStorage.getItem("dastarkhan_regs") || "[]"); }
-  catch { return []; }
-}
-
 /* ── Дастархандар аккордеон ── */
 function DastarkhanAccordion() {
   const [open, setOpen] = useState(false);
+  const tables = [
+    { name:"«Алтын ұя»",      desc:"Бұл дастарханда – мектепті жүрегінде сақтаған, алғашқы ұстазын, алғашқы достарын ешқашан ұмытпаған түлектер отыр. Бұл – бәріміздің бастау алған қасиетті ордамыздың белгісі." },
+    { name:"«Адал дос»",      desc:"Бұл жерде – жылдар өтсе де арасы үзілмеген, қуанышта да, қиындықта да бірге болған шынайы достар жиналған. Достықтары – уақытқа бағынбайтын ең қымбат байлық." },
+    { name:"«Қоңырау»",       desc:"Бұл дастарханда – мектептегі сыңғырлаған қоңырау үнін сағынышпен еске алатын, әр үзіліс пен әр сабақтың қызығын бірге бөліскен сыныптастар отыр." },
+    { name:"«Қызбел Барысы»", desc:"Бұл үстелде – қайсарлығы мен табандылығы арқылы өмірде өз орнын тапқан, мектептің намысын қорғап, белсенділігімен ерекшеленген түлектер отыр." },
+    { name:"«Ханымдар»",      desc:"Бұл дастархан – мектептің көркі болған, нәзіктігімен, ақылымен, жылулығымен бәріміздің жүрегімізде із қалдырған аруларға арналған." },
+    { name:"«Жан құрбы»",    desc:"Бұл жерде – сырластығы үзілмеген, қуанышта да, мұңда да бір-біріне тірек болған жан құрбылар жиналған. Жылдар өтсе де олардың арасындағы сенім мен жылылық сол қалпында сақталған." },
+  ];
   return (
     <div style={{ ...card, marginBottom:20 }}>
       <div onClick={()=>setOpen(o=>!o)} style={{ cursor:"pointer", display:"flex", alignItems:"center", justifyContent:"space-between", userSelect:"none" }}>
@@ -618,7 +610,7 @@ function DastarkhanAccordion() {
       </div>
       {open && (
         <div style={{ marginTop:16 }}>
-          {TABLES.map((item,i)=>(
+          {tables.map((item,i)=>(
             <div key={i} style={{ marginBottom:14, paddingBottom:14,
               borderBottom: i<tables.length-1 ? `1px solid rgba(212,160,23,0.2)` : "none" }}>
               <div style={{ color:GOLD2, fontFamily:"Georgia,serif", fontWeight:700, fontSize:15, marginBottom:4 }}>
@@ -653,31 +645,14 @@ const PHOTOS_NURA = [
 function Page4() {
   const [lbSrc, setLbSrc] = useState(null);
   const [name, setName] = useState("");
-  const [selTable, setSelTable] = useState("");
-  const [regs, setRegs] = useState(loadRegs);
+  const [msg,  setMsg]  = useState("");
+  const [list, setList] = useState([]);
   const [done, setDone] = useState(false);
-  const [warnMsg, setWarnMsg] = useState("");
-
-  const tCount = t => regs.filter(r => r.table === t).length;
 
   const submit = () => {
-    if (!name.trim() || !selTable) return;
-    setWarnMsg("");
-    const cnt = tCount(selTable);
-    if (cnt >= MAX_PER_TABLE) {
-      const avail = TABLES.filter(t => tCount(t.name) < MAX_PER_TABLE);
-      setWarnMsg(
-        avail.length > 0
-          ? `${name.trim()}, «${selTable}» дастарханында орын жоқ (${cnt}/${MAX_PER_TABLE}). «${avail[0].name}» дастарханына жазылуды ұсынамыз — онда әлі ${MAX_PER_TABLE - tCount(avail[0].name)} орын бар.`
-          : `${name.trim()}, барлық дастарханда орын толды. Ұйымдастырушыға хабарласыңыз: ${ADMIN_PHONE}`
-      );
-      return;
-    }
-    const updated = [...regs, { name: name.trim(), table: selTable }];
-    setRegs(updated);
-    localStorage.setItem("dastarkhan_regs", JSON.stringify(updated));
-    setName(""); setSelTable(""); setDone(true);
-    setTimeout(() => setDone(false), 3000);
+    if (!name.trim()) return;
+    setList(l=>[...l,{name,msg}]); setName(""); setMsg(""); setDone(true);
+    setTimeout(()=>setDone(false),3000);
   };
 
   return (
@@ -752,74 +727,19 @@ function Page4() {
         ) : (
           <div style={{ display:"flex", flexDirection:"column", gap:10 }}>
             <input value={name} onChange={e=>setName(e.target.value)} placeholder="Есіміңді жаз" style={inputSt}/>
-            <div style={{ position:"relative" }}>
-              <select value={selTable} onChange={e=>{ setSelTable(e.target.value); setWarnMsg(""); }}
-                style={{ ...inputSt, cursor:"pointer", appearance:"none", WebkitAppearance:"none", paddingRight:32 }}>
-                <option value="">— Дастарханды таңдаңыз —</option>
-                {TABLES.map((t,i)=>{
-                  const cnt = tCount(t.name);
-                  const full = cnt >= MAX_PER_TABLE;
-                  return (
-                    <option key={i} value={t.name} disabled={full}>
-                      {t.name} {full ? "— орын жоқ" : `(${cnt}/${MAX_PER_TABLE})`}
-                    </option>
-                  );
-                })}
-              </select>
-              <span style={{ position:"absolute", right:12, top:"50%", transform:"translateY(-50%)", color:GOLD, pointerEvents:"none", fontSize:11 }}>▼</span>
-            </div>
-            {warnMsg && (
-              <div style={{ background:"rgba(160,0,0,0.25)", border:"1px solid rgba(255,100,100,0.4)", borderRadius:8, padding:"12px 14px", color:"#ffaaaa", fontSize:13, lineHeight:1.7 }}>
-                ⚠️ {warnMsg}
-              </div>
-            )}
-            <button onClick={submit} disabled={!name.trim() || !selTable} style={{
-              background: (name.trim() && selTable) ? `linear-gradient(135deg,${GOLD},${GOLD2})` : "rgba(0,0,0,0.3)",
-              color: (name.trim() && selTable) ? RED1 : "rgba(255,220,160,0.3)",
-              border:"none", borderRadius:8, padding:"12px 20px",
-              fontWeight:700, fontSize:15, cursor:(name.trim()&&selTable)?"pointer":"not-allowed",
-              transition:"all 0.2s",
-            }}>
-              ✓ Жазылу
-            </button>
+            <textarea value={msg} onChange={e=>setMsg(e.target.value)} placeholder="Қандай дастарханды қалайсың?" rows={3} style={{ ...inputSt, resize:"vertical" }}/>
           </div>
         )}
-
-        {/* Дастархандар бойынша тізім */}
-        <div style={{ marginTop:24 }}>
-          <div style={{ color:GOLD, fontSize:11, letterSpacing:3, textTransform:"uppercase", marginBottom:14 }}>Дастархандар тізімі</div>
-          {TABLES.map((t,i)=>{
-            const tRegs = regs.filter(r => r.table === t.name);
-            const cnt = tRegs.length;
-            const full = cnt >= MAX_PER_TABLE;
-            return (
-              <div key={i} style={{ marginBottom:14, paddingBottom:14,
-                borderBottom: i < TABLES.length-1 ? "1px solid rgba(212,160,23,0.15)" : "none" }}>
-                <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom: tRegs.length > 0 ? 7 : 0 }}>
-                  <span style={{ color:GOLD2, fontFamily:"Georgia,serif", fontWeight:700, fontSize:14 }}>
-                    {i+1}. {t.name}
-                  </span>
-                  <span style={{
-                    background: full ? "rgba(160,0,0,0.3)" : "rgba(212,160,23,0.12)",
-                    color: full ? "#ff8888" : GOLD,
-                    border:`1px solid ${full ? "rgba(200,0,0,0.4)" : "rgba(212,160,23,0.3)"}`,
-                    borderRadius:20, padding:"2px 10px", fontSize:11, fontWeight:700, whiteSpace:"nowrap",
-                  }}>
-                    {cnt}/{MAX_PER_TABLE}{full ? " · Орын жоқ" : ""}
-                  </span>
-                </div>
-                {tRegs.map((r,j)=>(
-                  <div key={j} style={{ display:"flex", alignItems:"center", gap:6, color:CREAM, fontSize:13, padding:"2px 0 2px 8px" }}>
-                    <span style={{ color:GOLD, fontSize:10 }}>✦</span> {r.name}
-                  </div>
-                ))}
-                {tRegs.length === 0 && (
-                  <div style={{ color:"rgba(255,220,160,0.3)", fontSize:12, paddingLeft:8, fontStyle:"italic" }}>Әлі жазылған жоқ</div>
-                )}
+        {list.length > 0 && (
+          <div style={{ marginTop:14 }}>
+            <div style={{ color:GOLD, fontSize:13, marginBottom:8 }}>Тізімге енгендер ({list.length}):</div>
+            {list.map((g,i)=>(
+              <div key={i} style={{ padding:"7px 12px", background:"rgba(0,0,0,0.2)", borderRadius:7, marginBottom:6, fontSize:13, color:CREAM }}>
+                ✓ {g.name}{g.msg ? ` — "${g.msg}"` : ""}
               </div>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Ұйымдастырушылар алқасы */}
